@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
@@ -47,9 +47,8 @@ model Epi_Allergic_Reaction {
 
 model DiphenhydrAMINE {
   id                String              @id @default(cuid())
-  Contraindicator_2 String
-  Dose              Int
-  Interval          Int
-  Dose_number       Int
+  Contraindicator_1 String
+  Dose_less_50      Int
+  Does_greater_50   Int
   Allergic_Reaction Allergic_Reaction[]
 }
