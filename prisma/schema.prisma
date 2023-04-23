@@ -2,16 +2,54 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Chief_Complaint {
+  id                  String            @id @default(cuid())
+  Allergic_Reaction   Allergic_Reaction @relation(fields: [allergic_ReactionId], references: [id])
+  allergic_ReactionId String
+}
+
+model Allergic_Reaction {
+  id                      String                @id @default(cuid())
+  name                    String
+  Indicator_1             String
+  Indicator_2             String
+  Chief_Complaint         Chief_Complaint[]
+  Epi_Allergic_Reaction   Epi_Allergic_Reaction @relation(fields: [epi_Allergic_ReactionId], references: [id])
+  DiphenhydrAMINE         DiphenhydrAMINE       @relation(fields: [diphenhydrAMINEId], references: [id])
+  epi_Allergic_ReactionId String
+  diphenhydrAMINEId       String
+}
+
+model Epi_Allergic_Reaction {
+  id                String              @id @default(cuid())
+  Contraindicator_1 String
+  Dose              Int
+  Dose_weight       String
+  Interval          Int
+  Dose_number       Int
+  Allergic_Reaction Allergic_Reaction[]
+}
+
+model DiphenhydrAMINE {
+  id                String              @id @default(cuid())
+  Contraindicator_2 String
+  Dose              Int
+  Interval          Int
+  Dose_number       Int
+  Allergic_Reaction Allergic_Reaction[]
 }
