@@ -17,10 +17,19 @@ model Example {
   updatedAt DateTime @updatedAt
 }
 
+model Query {
+  id                String          @id @default(cuid())
+  Chief_Complaint   Chief_Complaint @relation(fields: [chief_ComplaintId], references: [id])
+  chief_ComplaintId String
+  createdAt DateTime @default(now())
+
+}
+
 model Chief_Complaint {
   id                  String            @id @default(cuid())
   Allergic_Reaction   Allergic_Reaction @relation(fields: [allergic_ReactionId], references: [id])
   allergic_ReactionId String
+  Query               Query[]
 }
 
 model Allergic_Reaction {
