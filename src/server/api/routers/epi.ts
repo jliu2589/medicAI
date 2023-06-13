@@ -7,3 +7,5 @@ export const epiRouter = createTRPCRouter({
     return ctx.prisma.epi_Allergic_Reaction.findMany();
   }),
 });
+
+// procedure is a method to generate function client calls. Public you don't need to be authenticated

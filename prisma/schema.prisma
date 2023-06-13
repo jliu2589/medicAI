@@ -25,6 +25,12 @@ model Query {
 
 }
 
+model Patient_Info {
+  id                String          @id @default(cuid())
+  Age               Int
+  Weight            Int
+}
+
 model Chief_Complaint {
   id                  String            @id @default(cuid())
   Allergic_Reaction   Allergic_Reaction @relation(fields: [allergic_ReactionId], references: [id])
