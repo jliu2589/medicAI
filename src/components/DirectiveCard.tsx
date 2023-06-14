@@ -1,13 +1,13 @@
 import { NextComponentType } from "next";
 import React from "react";
 
-type MyComponentProps = {
+type DirectiveProps = {
   directive: string;
   treatment: string;
   dose: string;
   route: string;
 };
-const DirectiveCard: React.FC<MyComponentProps> = ({
+const DirectiveCard: React.FC<DirectiveProps> = ({
   directive,
   treatment,
   dose,
